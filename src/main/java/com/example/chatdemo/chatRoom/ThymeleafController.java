@@ -1,8 +1,14 @@
 package com.example.chatdemo.chatRoom;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.sql.SQLOutput;
 
 
 @Controller
@@ -10,7 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ThymeleafController {
 
     @GetMapping("/chatRoom")
-    public String chatRoom() {
+    public String chatRoom(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String memAccount = userDetails.getUsername();
+            model.addAttribute("name",memAccount);
+        }
+
         return "index";
     }
 }

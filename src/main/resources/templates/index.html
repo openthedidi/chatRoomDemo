@@ -59,7 +59,7 @@
 </head>
 <body>
 <div id="chat"></div>
-<input type="text" id="usernameInput" placeholder="Username">
+<input type="text" id="usernameInput" th:value="${name}">
 <input type="text" id="messageInput" placeholder="Type your message" onkeydown="if(event.keyCode === 13) sendMessage()">
 <button onclick="sendMessage()">Send</button>
 </body>
