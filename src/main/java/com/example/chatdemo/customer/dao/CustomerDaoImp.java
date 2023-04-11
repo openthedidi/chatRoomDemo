@@ -22,4 +22,11 @@ public class CustomerDaoImp implements CustomerDao{
     public List<Customer> findAll() {
         return customerRepository.findAll();
     }
+
+    @Override
+    public void newOne(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+
 }

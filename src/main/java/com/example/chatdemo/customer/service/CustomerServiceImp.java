@@ -15,4 +15,14 @@ public class CustomerServiceImp implements CustomerService{
     public Customer findOneById(String memNo) {
         return customerDao.findOneById(memNo);
     }
+
+    @Override
+    public void newOne(String memNo, String memName, String memAccount, String memPassword) {
+        Customer customer = new Customer();
+        customer.setMemAccount(memAccount);
+        customer.setMemName(memName);
+        customer.setMemNo(memNo);
+        customer.setMemPassword(memPassword);
+        customerDao.newOne(customer);
+    }
 }

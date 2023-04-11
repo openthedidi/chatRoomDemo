@@ -22,8 +22,16 @@ public class ThymeleafController {
             UserDetails userDetails = (UserDetails) authentication.getPrincipal();
             String memAccount = userDetails.getUsername();
             model.addAttribute("name",memAccount);
+        }else{
+            return "login";
         }
-
         return "index";
+    }
+
+    @GetMapping("/error")
+    public String login(Model model){
+        System.out.println("登入失敗");
+        model.addAttribute("error",1);
+        return "login";
     }
 }
